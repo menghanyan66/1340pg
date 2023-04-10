@@ -1,0 +1,20 @@
+FLAGS = -pedantic-errors -std=c++11
+game1.o: game1.cpp game1.h
+	g++ $(FLAGS) -c $<
+game2.o: game2.cpp game2.h
+	g++ $(FLAGS) -c $<
+game3.o: game3.cpp game3.h
+	g++ $(FLAGS) -c $<
+game4.o: game4.cpp game4.h
+	g++ $(FLAGS) -c $<
+game5.o: game5.cpp game5.h
+	g++ $(FLAGS) -c $<
+main.o: gcd_main.cpp game1.h game2.h game3.h game4.h game5.h
+	g++ $(FLAGS) -c $<
+main: game1.o game2.o game3.o game4.o game5.o main.o
+	g++ $(FLAGS) $^ -o $@
+clean:
+	rm -f main game1.o gam2.o game3.o gam4.o game5.o main.o main.tgz
+tar:
+	tar -czvf main.tgz *.cpp *.h
+.PHONY: clean tar
